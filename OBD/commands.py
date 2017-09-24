@@ -1,3 +1,6 @@
+import json
+
+name = {}
 
 # A * 256 + B
 def Astar256plusB(messages):
@@ -122,11 +125,6 @@ def max_value_air_flow_rate(messages):
     return int(messages[4:], 16) * 10
 
 
-# of warm-ups since codes cleared
-def warmups_since_codes_cleared(messages):
-    return messages[2]
-
-
 # Barometric Pressure
 def barometric_pressure(messages):
     return int(messages[4:], 16)
@@ -233,7 +231,7 @@ def battery_remaining(messages):
 
 
 # Driver's demand engine - percent torque
-def engine_torque_percent(messages):
+def drivers_engine_torque_percent(messages):
     d = int(messages[4:], 16) - 125
     return d
 
@@ -274,3 +272,78 @@ def EGR_error(messages):
 def air_temp(messages):
     d = int(messages[4:], 16) - 40
     return d
+
+
+# reads from a file and generates names for different pids
+def generate_names():
+
+    with open("file.txt") as f:
+        for line in f:
+            (key, val) = line.split(",", 1)
+            name[key] = val
+
+
+def decode(message):
+    generate_names()
+    mode = message[0:4]
+    value_function = {
+                      '4104': engine_load_value,
+                      '4105': engine_coolant_temperature,
+                      '4106': short_long_term_bank_1_2,
+                      '4107': short_long_term_bank_1_2,
+                      '4108': short_long_term_bank_1_2,
+                      '4109': short_long_term_bank_1_2,
+                      '410A': fuel_pressure,
+                      '410B': intake_manifold_absolute_pressure,
+                      '410C': engine_RPM,
+                      '410D': vehicle_speed,
+                      '410E': timing_advance,
+                      '410F': intake_air_temperature,
+                      '4110': MAF_air_flow_rate,
+                      '4111': intake_air_temperature,
+                      '411F': runtime_since_engine_start,
+                      '4121': distance_with_mil_on,
+                      '4122': fuel_rail_pressure_manifold,
+                      '4123': fuel_rail_pressure_injection,
+                      '412C': commandedEGR,
+                      '412D': EGR_error,
+                      '412F': fuel_level_input,
+                      '4130': warm_ups_since_code_cleared,
+                      '4131': distance_since_codes_cleared,
+                      '4133': barometric_pressure,
+                      '4142': control_module_voltage,
+                      '4143': absolute_load_value,
+                      '4144': command_equivalence_ratio,
+                      '4145': relative_throttle_position,
+                      '4146': air_temp,
+                      '4147': absolute_throttle_position,
+                      '4148': absolute_throttle_position,
+                      '4149': absolute_pedal_position,
+                      '414A': absolute_pedal_position,
+                      '414B': absolute_pedal_position,
+                      '414C': commanded_throttle_actuator,
+                      '414D': time_run_with_mil_on,
+                      '414E': time_since_trouble_codes_cleared,
+                      '4154': evap_system_vapor_pressure,
+                      '4159': fuel_rail_pressure,
+                      '415A': accelerator_pedal_position,
+                      '415B': battery_remaining,
+                      '415C': engine_oil_temperature,
+                      '415D': fuel_injection_timing,
+                      '415E': engine_fuel_rate,
+                      '4161': drivers_engine_torque_percent,
+                      '4162': engine_percent_torque,
+                      '4163': engine_reference_torque
+                      }
+
+    sensor_name = name[mode]
+    value = value_function[mode](message)
+    data={}
+    data['mode'] = message[0:2]
+    data['pid'] = message[2:4]
+    data['name'] = sensor_name
+    data['value'] = value
+    jsonToPython = json.dumps(data)
+    print(jsonToPython)
+
+decode("41051234")

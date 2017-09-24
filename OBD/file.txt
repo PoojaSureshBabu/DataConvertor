@@ -1,0 +1,49 @@
+4104,Calculated engine load
+4105,Engine coolant temperature
+4106,Short term fuel trim—Bank 1
+4107,Long term fuel trim—Bank 1
+4108,Short term fuel trim—Bank 1
+4109,Long term fuel trim—Bank 1
+410A,Fuel pressure
+410B,Intake manifold absolute pressure
+410C,Engine RPM
+410D,Vehicle speed
+410E,Timing advance
+410F,Intake air temperature
+4110,MAF air flow rate
+4111,Throttle position
+411F,Run time since engine start
+4121,Distance traveled with malfunction indicator lamp (MIL) on
+4122,Fuel Rail Pressure (relative to manifold vacuum)
+4123,Fuel Rail Pressure (diesel, or gasoline direct inject)
+412C,Commanded EGR
+412D,EGR Error
+412E,Commanded evaporative purge
+412F,Fuel Level Input
+4130,No. of warm-ups since codes cleared
+4131,Distance traveled since codes cleared
+4132,Evap. System Vapor Pressure
+4133,Barometric pressure
+4142,Control module voltage
+4143,Absolute load value
+4144,Command equivalence ratio
+4145,Relative throttle position
+4146,Ambient air temperature
+4147,Absolute throttle position B
+4148,Absolute throttle position C
+4149,Accelerator pedal position D
+414A,Accelerator pedal position E
+414B,Accelerator pedal position F
+414C,Commanded throttle actuator
+414D,Time run with MIL on
+414E,Time since trouble codes cleared
+4154,Evap system vapor pressure
+4159,Fuel rail pressure (absolute)
+415A,Relative accelerator pedal position
+415B,Hybrid battery pack remaining life
+415C,Engine oil temperature
+415D,Fuel injection timing
+415E,Engine fuel rate
+4161,Driver's demand engine - percent torque
+4162,Actual engine - percent torque
+4163,Engine reference torque
