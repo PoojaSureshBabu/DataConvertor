@@ -49,7 +49,7 @@
         var zip_filename = $('#zip_filename').val();
         $("#processing-modal").modal("show");
         $.ajax({
-		url: 'sample_json.json',
+		url: '/translator/graph',
 		type: 'GET',
 		async: true,
 		dataType: "json",
